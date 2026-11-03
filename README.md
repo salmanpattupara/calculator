@@ -1,68 +1,89 @@
 # Calculator App
 
-A simple calculator application that performs basic arithmetic
-operations.
+A simple Python calculator application that performs basic arithmetic operations.
 
 ## Features
 
--   **Addition:** Adds two numbers.
--   **Subtraction:** Subtracts one number from another.
--   **User input:** Accepts numbers from the user.
--   **Result display:** Shows the result of each calculation.
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Input-driven calculator menu
+- Division rounded to two decimal places
+- Zero-division safety message
+
+## Project Structure
+
+- `calculator.py` contains the arithmetic functions
+- `main.py` contains the interactive CLI menu
+- `tests/test_calculator.py` contains automated tests
 
 ## Getting Started
 
 ### Prerequisites
 
-Install the tools or runtime required by this project.
+- Python 3 installed
 
 ### Run the application
 
-1.  Clone or download this repository.
-2.  Open the project folder.
-3.  Run the application using the command or method appropriate for the
-    language and framework used in this project.
+From the project root, run:
 
-> Add the exact run command here once your project setup is finalized.
+```bash
+python main.py
+```
 
 ## Usage
 
-1.  Start the calculator application.
-2.  Choose **Addition** or **Subtraction**.
-3.  Enter the numbers.
-4.  View the result.
+1. Run the script.
+2. Enter the first number.
+3. Enter the second number.
+4. Choose an operation from the menu.
+5. View the result.
 
-### Examples
+### Example
 
-  Operation       Input   Result
-  ------------- ------- --------
-  Addition        5 + 3        8
-  Subtraction     5 - 3        2
+- Addition: `5 + 3 = 8`
+- Subtraction: `5 - 3 = 2`
+- Multiplication: `5 * 3 = 15`
+- Division: `10 / 4 = 2.5`
+
+## Testing
+
+Run the test suite with:
+
+```bash
+python -m pytest -q
+```
+
+The project currently includes tests covering:
+
+- addition
+- subtraction
+- multiplication
+- division
+- division-by-zero handling
 
 ## Project Status
 
-The project is currently at its initial release. Only addition and
-subtraction are supported.
-
-## Roadmap
-
--   [ ] Add multiplication.
--   [ ] Add division.
--   [ ] Improve input validation and error handling.
--   [ ] Add more mathematical operations.
+The calculator supports the core four arithmetic operations and includes automated tests.
 
 ## Version History
 
-### v1.0.0 --- Initial Release
+### v1.1.0
 
--   Set up the initial calculator project.
--   Implemented addition.
--   Implemented subtraction.
+- Added multiplication support
+- Added division support
+- Rounded division output to two decimal places
+- Added automated tests for calculator functions
+
+### v1.0.0
+
+- Initial calculator project
+- Added addition and subtraction
 
 ## Contributing
 
-Suggestions and improvements are welcome. Feel free to open an issue or
-submit a pull request.
+Suggestions and improvements are welcome.
 
 ## License
 
