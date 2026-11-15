@@ -80,6 +80,13 @@ The calculator supports the core four arithmetic operations and includes automat
 
 ## Version History
 
+### v3.0.0
+
+- Added a FastAPI REST API for calculator operations
+- Added `/add`, `/sub`, `/mul`, and `/div` endpoints that accept numbers as query parameters
+- Added a root endpoint to check whether the API is running
+- Added API tests for successful calculations and invalid query parameters
+
 ### v2.0.0
 
 - Added multiplication support
