@@ -38,6 +38,24 @@ uvicorn main:app --reload
 
 The server starts at http://127.0.0.1:8000. Open http://127.0.0.1:8000/docs to try every endpoint from the browser.
 
+### Run with Docker
+
+The Docker image is available on [GitHub Container Registry](https://github.com/salmanpattupara/calculator/pkgs/container/calculator).
+
+Pull the image:
+
+```bash
+docker pull ghcr.io/salmanpattupara/calculator:695d1c4eb39f2328aa27740ebdf82c6e68edb5da
+```
+
+Run the API container:
+
+```bash
+docker run --name calculator-api -p 8000:8000 ghcr.io/salmanpattupara/calculator:695d1c4eb39f2328aa27740ebdf82c6e68edb5da
+```
+
+The API is then available at http://localhost:8000, with interactive documentation at http://localhost:8000/docs.
+
 ## API reference
 
 All endpoints use `GET` with query parameters `a` and `b` (numbers).

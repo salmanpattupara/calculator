@@ -27,3 +27,4 @@ def div(a:float,b:float) -> dict:
         raise HTTPException(status_code=400, detail="division by zero not permissible")
     return {"result": f"{division(a,b):.2f}"}
 
+
