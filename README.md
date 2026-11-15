@@ -1,108 +1,133 @@
-# Calculator
+# Calculator API
 
-![CI](https://github.com/salmanpattupara/calculator/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/salmanpattupara/calculator/actions/workflows/ci.yml/badge.svg?branch=main)
+![Release](https://img.shields.io/github/v/release/salmanpattupara/calculator)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC)
-![License](https://img.shields.io/github/license/salmanpattupara/calculator)
-![Stars](https://img.shields.io/github/stars/salmanpattupara/calculator)
-![Issues](https://img.shields.io/github/issues/salmanpattupara/calculator)
 
-A simple calculator with automated tests, built to learn CI/CD with GitHub Actions.
-
-# Calculator App
-
-A simple Python calculator application that performs basic arithmetic operations.
+A simple calculator exposed as a web API with [FastAPI](https://fastapi.tiangolo.com/). The project was built to learn CI/CD: every push to `main` and every pull request runs the automated tests with coverage on GitHub Actions.
 
 ## Features
 
-- Addition
-- Subtraction
-- Multiplication
-- Division
-- Input-driven calculator menu
-- Division rounded to two decimal places
-- Zero-division safety message
+- Addition, subtraction, multiplication and division over HTTP
+- Interactive API documentation generated automatically at `/docs`
+- Input validation and clear error responses
+- Automated tests for both the calculator logic and the API
+- CI pipeline with test coverage reporting
 
-## Project Structure
-
-- `calculator.py` contains the arithmetic functions
-- `main.py` contains the interactive CLI menu
-- `tests/test_calculator.py` contains automated tests
-
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
-- Python 3 installed
+- Python 3.12 or later
+- Git
 
-### Run the application
-
-From the project root, run:
-
-```bash
-python main.py
-```
-
-## Usage
-
-1. Run the script.
-2. Enter the first number.
-3. Enter the second number.
-4. Choose an operation from the menu.
-5. View the result.
-
-### Example
-
-- Addition: `5 + 3 = 8`
-- Subtraction: `5 - 3 = 2`
-- Multiplication: `5 * 3 = 15`
-- Division: `10 / 4 = 2.5`
-
-## Testing
-
-Run the test suite with:
+### Installation
 
 ```bash
-python -m pytest -q
+git clone https://github.com/salmanpattupara/calculator.git
+cd calculator
+pip install -r requirements.txt
 ```
 
-The project currently includes tests covering:
+### Run the API
 
-- addition
-- subtraction
-- multiplication
-- division
-- division-by-zero handling
+```bash
+uvicorn main:app --reload
+```
 
-## Project Status
+The server starts at http://127.0.0.1:8000. Open http://127.0.0.1:8000/docs to try every endpoint from the browser.
 
-The calculator supports the core four arithmetic operations and includes automated tests.
+## API reference
 
-## Version History
+All endpoints use `GET` with query parameters `a` and `b` (numbers).
 
-### v3.0.0
+| Endpoint | Example | Response |
+|---|---|---|
+| `/` | `/` | `{"message": "Calculator API is running"}` |
+| `/add` | `/add?a=4&b=3` | `{"result": 7.0}` |
+| `/subtract` | `/subtract?a=5&b=3` | `{"result": 2.0}` |
+| `/multiply` | `/multiply?a=4&b=3` | `{"result": 12.0}` |
+| `/divide` | `/divide?a=10&b=2` | `{"result": 5.0}` |
 
-- Added a FastAPI REST API for calculator operations
-- Added `/add`, `/sub`, `/mul`, and `/div` endpoints that accept numbers as query parameters
-- Added a root endpoint to check whether the API is running
-- Added API tests for successful calculations and invalid query parameters
+### Example request
 
-### v2.0.0
+```bash
+curl "http://127.0.0.1:8000/add?a=4&b=3"
+```
 
-- Added multiplication support
-- Added division support
-- Rounded division output to two decimal places
-- Added automated tests for calculator functions
+```json
+{"result": 7.0}
+```
 
-### v1.0.0
+### Errors
 
-- Initial calculator project
-- Added addition and subtraction
+| Case | Status | Response |
+|---|---|---|
+| Division by zero, e.g. `/divide?a=10&b=0` | `400` | `{"detail": "Cannot divide by zero"}` |
+| Non-numeric input, e.g. `/add?a=abc&b=3` | `422` | Validation error details |
+
+## Running the tests
+
+```bash
+python -m pytest
+```
+
+With coverage:
+
+```bash
+python -m pytest --cov=calculator --cov=main --cov-report=term-missing
+```
+
+The `Missing` column in the coverage table lists the lines that no test runs.
+
+## Project structure
+
+```
+calculator/
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # GitHub Actions pipeline
+├── tests/
+│   ├── test_calculator.py    # tests for the calculator functions
+│   └── test_api.py           # tests for the API endpoints
+├── calculator.py             # calculator logic
+├── main.py                   # FastAPI application
+├── user_app.py               # deprecated user-input version
+├── requirements.txt
+└── README.md
+```
+
+## CI/CD
+
+The workflow in `.github/workflows/ci.yml` runs on every push to `main` and on every pull request. It:
+
+1. Checks out the code
+2. Sets up Python 3.12
+3. Installs the dependencies from `requirements.txt`
+4. Runs all tests with coverage
 
 ## Contributing
 
-Suggestions and improvements are welcome.
+1. Create a branch from an up-to-date `main`:
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b my-change
+   ```
+2. Make your change and add or update tests.
+3. Run `python -m pytest` locally.
+4. Push the branch and open a pull request. Use `Closes #<issue-number>` in the description to link an issue.
+5. Merge once the CI check is green.
+
+## Versioning and releases
+
+This project follows [semantic versioning](https://semver.org/): `MAJOR.MINOR.PATCH`. See the [Releases page](https://github.com/salmanpattupara/calculator/releases) for the full version history and release notes.
+
+## Deprecated
+
+The user-input version of the calculator (`user_app.py`) is deprecated and will be removed in a future release. The API is the only supported way to use the calculator going forward.
 
 ## License
 
-No license has been specified yet.
+No license has been added yet. If you want others to be able to reuse this code, add a `LICENSE` file (for example, MIT) to the repository.
