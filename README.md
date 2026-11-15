@@ -1,6 +1,11 @@
 # Calculator
 
 ![CI](https://github.com/salmanpattupara/calculator/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC)
+![License](https://img.shields.io/github/license/salmanpattupara/calculator)
+![Stars](https://img.shields.io/github/stars/salmanpattupara/calculator)
+![Issues](https://img.shields.io/github/issues/salmanpattupara/calculator)
 
 A simple calculator with automated tests, built to learn CI/CD with GitHub Actions.
 
