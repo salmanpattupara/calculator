@@ -1,29 +1,28 @@
-from calculator import addition,subtraction,multiplication,division
-
-options = {
-    "addition": addition,
-    "subtraction": subtraction,
-    "multiplication":multiplication,
-    "division":division
-    
-    
-}
-
-print("calculator v1")
-
-a=int(input("input a number"))
-b=int(input("enter second number"))
+from fastapi import FastAPI,HTTPException
+from calculator import addition,subtraction,division,multiplication
 
 
+app=FastAPI(title="Calculator App")
 
-for index,item in enumerate(list(options.keys()),start=1):
-    print(f"{index}. {item}")
+@app.get("/")
+def root():
+    return {"message": "app is running"}
+
+@app.get("/add")
+def add(a:float , b: float) -> dict:
+    return {"result":addition(a,b)}
+
+@app.get("/sub")
+def sub(a:float, b: float) -> dict:
+    return {"result" : subtraction(a,b)}
+
+@app.get("/mul")
+def mul(a:float ,b: float) -> dict:
+    return {"result" : multiplication(a,b)}
 
 
-i=int(input("select an operation: "))
-selected=list(options.keys())[i-1]
-print(selected)
+@app.get("/div")
+def div(a:float,b:float) -> dict:
+    return {"result": f"{division(a,b):.2f}"}
 
-answer=options[selected]
-print(answer(a,b))
 
