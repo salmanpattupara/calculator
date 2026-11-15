@@ -1,10 +1,10 @@
+import pytest
 from calculator import addition, division, multiplication, subtraction
 
 
-def test_addition():
-    assert addition(2, 3) == 5
-    assert addition(-1, 1) == 0
-
+@pytest.mark.parametrize("a, b, expected", [(1, 2, 3), (-1, 1, 0), (0, 0, 0), (2.5, 2.5, 5)])
+def test_addition(a, b, expected):
+    assert addition(a, b) == expected
 
 def test_subtraction():
     assert subtraction(5, 3) == 2
