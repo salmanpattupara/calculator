@@ -80,7 +80,7 @@ The calculator supports the core four arithmetic operations and includes automat
 
 ## Version History
 
-### v1.1.0
+### v2.0.0
 
 - Added multiplication support
 - Added division support
