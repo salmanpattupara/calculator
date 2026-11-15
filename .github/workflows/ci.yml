@@ -20,8 +20,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run calculator tests
-        run: python -m pytest tests/test_calculator.py
-
-      - name: Run API tests
-        run: python -m pytest tests/test_api.py
+      - name: Run all tests with coverage
+        run: python -m pytest --cov=calculator --cov=main --cov-report=term-missing
