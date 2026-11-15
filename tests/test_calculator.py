@@ -53,6 +53,13 @@ def test_calculator_api_operations(client, endpoint, params, expected):
     assert response.json() == expected
 
 
+def test_division_api_rejects_division_by_zero(client):
+    response = client.get("/div", params={"a": 5, "b": 0})
+
+    assert response.status_code == 400
+    assert response.json() == {"detail": "division by zero not permissible"}
+
+
 @pytest.mark.parametrize(
     "params",
     [

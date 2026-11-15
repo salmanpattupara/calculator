@@ -23,6 +23,7 @@ def mul(a:float ,b: float) -> dict:
 
 @app.get("/div")
 def div(a:float,b:float) -> dict:
+    if b == 0:
+        raise HTTPException(status_code=400, detail="division by zero not permissible")
     return {"result": f"{division(a,b):.2f}"}
-
 
