@@ -1,3 +1,9 @@
+# Calculator
+
+![CI](https://github.com/salmanpattupara/calculator/actions/workflows/ci.yml/badge.svg)
+
+A simple calculator with automated tests, built to learn CI/CD with GitHub Actions.
+
 # Calculator App
 
 A simple Python calculator application that performs basic arithmetic operations.
